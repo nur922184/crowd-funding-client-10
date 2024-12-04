@@ -6,6 +6,13 @@ import { AuthContext } from '../Providers/AuthProvider';
 
 const Navbar = () => {
   const { user, Logout } = useContext(AuthContext)
+  const handleSignOut = ()=>{
+    Logout()
+    .then(()=>{
+      alert('users sign out successfully')
+    })
+    .catch( error => console.log('ERROR', error.message))
+  }
   const Links =
     <>
       <li><NavLink to='/'>Home</NavLink> </li>
@@ -39,7 +46,7 @@ const Navbar = () => {
                 {Links}
             </ul>
         </div>
-        <NavLink to='/'> <img className='w-20 h-20 rounded-full' src={logo} alt="" /></NavLink>
+        <NavLink to='/'> <img className='w-16 h-16 rounded-full' src={logo} alt="" /></NavLink>
     </div>
     <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -65,14 +72,8 @@ const Navbar = () => {
                 <ul
                     tabIndex={0}
                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow space-y-2">
-                    <li className='bg-red-300 rounded-full hover:bg-red-400 hover:text-white'>
-                        <Link to={'profile'} className="justify-between">
-                            Profile
-                            <span className="badge">New</span>
-                        </Link>
-                    </li>
                     <li>{user && user.email}</li>
-                    <button  onClick={Logout} className='btn btn-sm'>LogOut</button>
+                    <button  onClick={handleSignOut} className='btn btn-sm'>LogOut</button>
                 </ul>
             </div>) :
                 (<div className="dropdown dropdown-end flex items-center gap-4">

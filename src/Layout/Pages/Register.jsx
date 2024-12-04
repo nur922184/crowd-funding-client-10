@@ -59,6 +59,7 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
                 setUser(user);
+                navigate("/")
                 // UpdateUserProfile({ displayName: name, photoURL: photoUrl })
                 //     .then(() => {
                 //         navigate("/", { state: { successMessage: "Successfully registered!" } });
@@ -66,7 +67,7 @@ const Register = () => {
                 //     .catch(err => {
                 //         console.log(err);
                 //     });
-                // alert('Successfully registered');
+                alert('Successfully registered');
             })
         .catch((error) => {
             const errorCode = error.code;

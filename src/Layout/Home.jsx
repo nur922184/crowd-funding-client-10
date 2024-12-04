@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import slide2 from '../assets/2.jpg' ;
+import slide1 from '../assets/1.jpeg'
+import slide3 from '../assets/3.webp'
 const Home = () => {
   const [campaigns, setCampaigns] = useState([]);
 
@@ -18,11 +20,11 @@ const Home = () => {
         <div className="carousel w-full h-96">
           <div id="slide1" className="carousel-item relative w-full">
             <img
-              src="https://via.placeholder.com/1500x400"
+              src={slide3}
               alt="Campaign Banner 1"
               className="w-full"
             />
-            <div className="absolute top-1/2 left-10 transform -translate-y-1/2 text-white">
+            <div className="absolute top-1/2 left-10 transform -translate-y-1/2 text-gray-900">
               <h1 className="text-4xl font-bold mb-4">Support Inspiring Ideas</h1>
               <p className="mb-6">Join hands to bring creative projects to life!</p>
               <Link to="/campaigns" className="btn bg-green-500 px-6 py-2 rounded">
@@ -32,11 +34,11 @@ const Home = () => {
           </div>
           <div id="slide2" className="carousel-item relative w-full">
             <img
-              src="https://via.placeholder.com/1500x400"
+              src={slide1}
               alt="Campaign Banner 2"
               className="w-full"
             />
-            <div className="absolute top-1/2 left-10 transform -translate-y-1/2 text-white">
+            <div className="absolute top-1/2 left-10 transform -translate-y-1/2 text-gray-900">
               <h1 className="text-4xl font-bold mb-4">Make a Difference</h1>
               <p className="mb-6">Contribute to campaigns that change lives.</p>
               <Link to="/campaigns" className="btn bg-green-500 px-6 py-2 rounded">
@@ -46,11 +48,11 @@ const Home = () => {
           </div>
           <div id="slide3" className="carousel-item relative w-full">
             <img
-              src="https://via.placeholder.com/1500x400"
+              src={slide2}
               alt="Campaign Banner 3"
               className="w-full"
             />
-            <div className="absolute top-1/2 left-10 transform -translate-y-1/2 text-white">
+            <div className="absolute top-1/2 left-32 transform -translate-y-1/2 text-gray-900">
               <h1 className="text-4xl font-bold mb-4">Empower Communities</h1>
               <p className="mb-6">Help fund initiatives that matter.</p>
               <Link to="/campaigns" className="btn bg-green-500 px-6 py-2 rounded">
