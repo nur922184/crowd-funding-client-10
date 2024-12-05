@@ -5,6 +5,24 @@ import slide1 from '../assets/1.jpeg'
 import slide3 from '../assets/3.webp'
 import { CgCloseR } from "react-icons/cg";
 const Home = () => {
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "light" // Default to light theme
+  );
+
+  // Toggle theme and save to localStorage
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
+  // Apply theme class to the body
+  useEffect(() => {
+    document.body.className = theme; // Sets the body's class to the current theme
+  }, [theme]);
+
+
+
   const [campaigns, setCampaigns] = useState([]);
   const [selectedCampaign, setSelectedCampaign] = useState(null);
 
@@ -131,7 +149,7 @@ const Home = () => {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {/* Extra Section 1 */}
-            <div className="bg-gray-100 p-6 rounded-lg shadow">
+            <div className=" p-6 rounded-lg shadow">
               <h2 className="text-2xl font-bold mb-4">Why Crowdfunding?</h2>
               <p>
                 Crowdfunding allows individuals to support causes they believe in, connect
@@ -140,7 +158,7 @@ const Home = () => {
             </div>
 
             {/* Extra Section 2 */}
-            <div className="bg-gray-100 p-6 rounded-lg shadow">
+            <div className=" p-6 rounded-lg shadow">
               <h2 className="text-2xl font-bold mb-4">How It Works</h2>
               <ul className="list-disc ml-4">
                 <li>Create and share your campaign</li>

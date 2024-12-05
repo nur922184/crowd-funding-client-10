@@ -4,7 +4,8 @@ import { toast, } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../Providers/AuthProvider";
 import { MdDelete, MdEdit } from "react-icons/md";
-import LoadingPage from "../Component/LoadingPage";
+import Swal from "sweetalert2";
+
 
 const MyCampaigns = () => {
   const [campaigns, setCampaigns] = useState([]);
@@ -33,25 +34,34 @@ const MyCampaigns = () => {
 
   // Delete campaign
   const handleDelete = async (Id) => {
-    const confirm = window.confirm("Are you sure you want to delete this campaign?");
-    if (!confirm) return;
-
-    try {
-      const response = await fetch(`http://localhost:5000/campaigns/${Id}`, {
-        method: "DELETE",
-      });
-
-      const result = await response.json();
-      if (result.success) {
-        toast.success("Campaign deleted successfully!");
-        setCampaigns(campaigns.filter((campaign) => campaign._id !== Id));
-      } else {
-        toast.error("Failed to delete campaign.");
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch(`http://localhost:5000/campaigns/${Id}`, {
+            method: "DELETE",
+          });
+  
+          const result = await response.json();
+          if (result.success) {
+            Swal.fire("Deleted!", "Your campaign has been deleted.", "success");
+            setCampaigns(campaigns.filter((campaign) => campaign._id !== Id));
+          } else {
+            Swal.fire("Failed!", "Failed to delete campaign.", "error");
+          }
+        } catch (error) {
+          console.error("Error deleting campaign:", error);
+          Swal.fire("Error!", "Something went wrong. Try again later.", "error");
+        }
       }
-    } catch (error) {
-      console.error("Error deleting campaign:", error);
-      toast.error("Something went wrong. Try again later.");
-    }
+    });
   };
 
   if (loading) {
