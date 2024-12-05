@@ -3,9 +3,18 @@ import { Link } from "react-router-dom";
 import slide2 from '../assets/2.jpg';
 import slide1 from '../assets/1.jpeg'
 import slide3 from '../assets/3.webp'
+import { CgCloseR } from "react-icons/cg";
 const Home = () => {
   const [campaigns, setCampaigns] = useState([]);
+  const [selectedCampaign, setSelectedCampaign] = useState(null);
 
+  const openModal = (campaign) => {
+    setSelectedCampaign(campaign);
+  };
+
+  const closeModal = () => {
+    setSelectedCampaign(null);
+  };
   useEffect(() => {
     // Fetch running campaigns from the database
     fetch("http://localhost:5000/campaigns?limit=6")
@@ -84,14 +93,35 @@ const Home = () => {
                 />
                 <h3 className="text-xl font-bold mt-4">{campaign.title}</h3>
                 <p className="text-gray-700 mt-2">{campaign.description.slice(0, 80)}...</p>
-                <Link
-                  to={`/campaigns/${campaign._id}`} // Dynamic route
+                <button
+                  onClick={() => openModal(campaign)}
                   className="block mt-4 text-green-500 font-semibold"
                 >
                   See More
-                </Link>
+                </button>
               </div>
             ))}
+
+            {/* Modal */}
+            {selectedCampaign && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                <div className="bg-white p-6 rounded-lg shadow-lg w-3/4 md:w-1/2">
+                  <button
+                    onClick={closeModal}
+                    className= "text-red-500 hover:text-red-700 -mb-4 text-2xl"
+                  >
+                    <CgCloseR></CgCloseR>
+                  </button>
+                  <img
+                    src={selectedCampaign.image}
+                    alt={selectedCampaign.title}
+                    className="w-full h-48 object-cover rounded"
+                  />
+                  <h2 className="text-2xl font-bold mt-4">{selectedCampaign.title}</h2>
+                  <p className="text-gray-700 mt-4">{selectedCampaign.description}</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

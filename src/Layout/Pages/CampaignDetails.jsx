@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast, } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoadingPage from "../../Component/LoadingPage";
 
 const CampaignDetails = () => {
   const { id } = useParams();
@@ -66,7 +67,7 @@ const CampaignDetails = () => {
   };
 
   if (loading) {
-    return <div className="text-center mt-10">Loading...</div>;
+    return <LoadingPage></LoadingPage>;
   }
 
   if (!campaign) {

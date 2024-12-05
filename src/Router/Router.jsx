@@ -9,6 +9,7 @@ import AllCampaigns from "../Layout/AllCampaigns";
 import MyDonations from "../Layout/MyDonations";
 import CampaignDetalisCard from "../Component/CampaignDetalisCard";
 import CampaingnUpdate from "../Layout/CampaingnUpdate";
+import PrivatRoute from "../Providers/PrivatRoute";
 
 const router = createBrowserRouter([
   {
@@ -25,12 +26,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/campaigns",
-        element: <AllCampaigns></AllCampaigns>, 
+        element: <AllCampaigns></AllCampaigns>,
         loader: () => fetch('http://localhost:5000/campaigns')
       },
       {
         path: "/campaigns/:id",
-        element: <CampaignDetalisCard></CampaignDetalisCard>, 
+        element: <PrivatRoute><CampaignDetalisCard></CampaignDetalisCard></PrivatRoute>, 
         loader: ({params}) => fetch(`http://localhost:5000/campaigns/${params.id}`)
       },
       {
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
         element: <MyCampaigns></MyCampaigns>,
       },
       {
-        path: "//myDonations",
+        path: "/myDonations",
         element: <MyDonations></MyDonations>
       },
     ], 

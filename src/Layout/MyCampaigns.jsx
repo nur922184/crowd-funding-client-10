@@ -4,6 +4,7 @@ import { toast, } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../Providers/AuthProvider";
 import { MdDelete, MdEdit } from "react-icons/md";
+import LoadingPage from "../Component/LoadingPage";
 
 const MyCampaigns = () => {
   const [campaigns, setCampaigns] = useState([]);
@@ -54,7 +55,8 @@ const MyCampaigns = () => {
   };
 
   if (loading) {
-    return <div className="text-center mt-10">Loading...</div>;
+    return <div className="w-44 h-28 mx-auto"><span className="loading loading-infinity loading-lg"></span>;</div>
+
   }
 
   return (
