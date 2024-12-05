@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import slide2 from '../assets/2.jpg' ;
+import slide2 from '../assets/2.jpg';
 import slide1 from '../assets/1.jpeg'
 import slide3 from '../assets/3.webp'
 const Home = () => {
@@ -12,7 +12,6 @@ const Home = () => {
       .then((res) => res.json())
       .then((data) => setCampaigns(data));
   }, []);
-
   return (
     <div>
       {/* Banner Section */}
@@ -86,7 +85,7 @@ const Home = () => {
                 <h3 className="text-xl font-bold mt-4">{campaign.title}</h3>
                 <p className="text-gray-700 mt-2">{campaign.description.slice(0, 80)}...</p>
                 <Link
-                  to={`/campaign/${campaign._id}`}
+                  to={`/campaigns/${campaign._id}`} // Dynamic route
                   className="block mt-4 text-green-500 font-semibold"
                 >
                   See More

@@ -7,6 +7,8 @@ import AddNewCampaign from "../Layout/AddNewCampaign";
 import MyCampaigns from "../Layout/MyCampaigns";
 import AllCampaigns from "../Layout/AllCampaigns";
 import MyDonations from "../Layout/MyDonations";
+import CampaignDetalisCard from "../Component/CampaignDetalisCard";
+import CampaingnUpdate from "../Layout/CampaingnUpdate";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,16 @@ const router = createBrowserRouter([
         path: "/campaigns",
         element: <AllCampaigns></AllCampaigns>, 
         loader: () => fetch('http://localhost:5000/campaigns')
+      },
+      {
+        path: "/campaigns/:id",
+        element: <CampaignDetalisCard></CampaignDetalisCard>, 
+        loader: ({params}) => fetch(`http://localhost:5000/campaigns/${params.id}`)
+      },
+      {
+        path: "/campaigns/:Id",
+        element: <CampaingnUpdate></CampaingnUpdate>, 
+        loader: ({params}) => fetch(`http://localhost:5000/campaigns/${params.Id}`)
       },
       {
         path: "/my-campaigns",

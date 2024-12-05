@@ -1,14 +1,12 @@
 import { useContext, useState, } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { AuthContext } from '../Provider/AuthProvider';
 import { NavLink } from 'react-router-dom';
-// import Navbar from '../Components/Navbar';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { AuthContext } from '../../Providers/AuthProvider';
+import Navbar from '../../Component/Navber';
 
 const Register = () => {
-
-    const { crateNewUser, setUser } = useContext(AuthContext)
+    const { crateNewUser, setUser, UpdateUserProfile } = useContext(AuthContext)
     const [error, setError] = useState({})
     const [ErrorPass, setErrorPass] = useState({})
     const [show, setShow] = useState(false)
@@ -21,16 +19,8 @@ const Register = () => {
         const photoUrl = form.get('photo');
         const email = form.get('email');
         const Password = form.get('password');
-        console.log(name, photoUrl, email, Password)
-        let hasError = false;
 
-        // crateNewUser (email, Password)
-        // .then(result =>{
-        //     console.log(result.user)
-        // })
-        // .catch(error=> {
-        //     console.log('ERROR',error)
-        // })
+        let hasError = false;
 
         // Name Validation
         if (name.length < 5) {
@@ -59,32 +49,32 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
                 setUser(user);
-                navigate("/")
-                // UpdateUserProfile({ displayName: name, photoURL: photoUrl })
-                //     .then(() => {
-                //         navigate("/", { state: { successMessage: "Successfully registered!" } });
-                //     })
-                //     .catch(err => {
-                //         console.log(err);
-                //     });
-                alert('Successfully registered');
+                UpdateUserProfile({ displayName: name, photoURL: photoUrl })
+                    .then(() => {
+                        navigate("/", { state: { successMessage: "Successfully registered!" } });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+                // alert('Successfully registered');
             })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
 
-            if (errorCode === 'auth/email-already-in-use') {
-                setError({ ...error, email: "This email is already in use. Please try logging in." });
-            } else {
-                console.log(errorMessage);
-            }
-        });
+                if (errorCode === 'auth/email-already-in-use') {
+                    setError({ ...error, email: "This email is already in use. Please try logging in." });
+                } else {
+                    console.log(errorMessage);
+                }
+            });
     };
 
 
     return (
         <div>
             <div className='w-11/12 mx-auto sticky top-0 z-50 bg-base-200 bg-opacity-90'>
+                <Navbar></Navbar>
             </div>
             <div className='flex justify-center '>
                 <div className="card bg-base-100 w-full max-w-lg shrink-0 shadow-2xl p-10">

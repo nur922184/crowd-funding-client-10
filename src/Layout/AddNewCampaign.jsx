@@ -1,68 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Providers/AuthProvider";
 
 const AddNewCampaign = () => {
-//   const [campaignData, setCampaignData] = useState({
-//     image: "",
-//     title: "",
-//     type: "personal issue",
-//     description: "",
-//     minimumDonation: "",
-//     deadline: "",
-//     email: "", // These fields should be auto-filled from the logged-in user context
-//     userName: "",
-//   });
-// console.log(campaignData)
-//   const navigate = useNavigate();
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setCampaignData({ ...campaignData, [name]: value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     // Validate the input fields if needed
-//     if (
-//       !campaignData.image ||
-//       !campaignData.title ||
-//       !campaignData.description ||
-//       !campaignData.minimumDonation ||
-//       !campaignData.deadline
-//     ) {
-//       toast.error("Please fill out all required fields!");
-//       return;
-//     }
-
-//     try {
-//       // Save the campaign data to the database
-//       const response = await fetch("http://localhost:5000/campaigns", {
-//         method: "POST",
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify(campaignData),
-//       });
-
-//       const result = await response.json();
-//       if (result.success) {
-//         toast.success("Campaign added successfully!");
-//         navigate("/campaigns");
-//       } else {
-//         toast.error("Failed to add campaign. Try again!");
-//       }
-//     } catch (error) {
-//       console.error("Error adding campaign:", error);
-//       toast.error("Something went wrong. Try again later.");
-//     }
-//   };
+  const { user} = useContext(AuthContext)
 const handleSubmitCampaignForm = e => {
     e.preventDefault()
 
     const form = e.target;
-
     const image = form.image.value
     const title = form.title.value
     const type = form.type.value
@@ -112,6 +60,7 @@ const handleSubmitCampaignForm = e => {
             id="image"
             name="image"
             placeholder="Enter image URL"
+            required
             // value={campaignData.image}
             // onChange={handleChange}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
@@ -128,6 +77,7 @@ const handleSubmitCampaignForm = e => {
             id="title"
             name="title"
             placeholder="Enter campaign title"
+            required
             // value={campaignData.title}
             // onChange={handleChange}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
@@ -165,6 +115,7 @@ const handleSubmitCampaignForm = e => {
             id="description"
             name="description"
             placeholder="Enter campaign description"
+            required
             // value={campaignData.description}
             // onChange={handleChange}
             rows="4"
@@ -185,6 +136,7 @@ const handleSubmitCampaignForm = e => {
             id="minimumDonation"
             name="minimumDonation"
             placeholder="Enter minimum donation amount"
+            required
             // value={campaignData.minimumDonation}
             // onChange={handleChange}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
@@ -200,6 +152,7 @@ const handleSubmitCampaignForm = e => {
             type="date"
             id="deadline"
             name="deadline"
+            required
             // value={campaignData.deadline}
             // onChange={handleChange}
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
@@ -218,7 +171,7 @@ const handleSubmitCampaignForm = e => {
             type="email"
             id="email"
             name="email"
-            value={'moniruzzaman@gmail.com'} // Should be filled with user context
+            value={user?.email} // Should be filled with user context
             readOnly
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 bg-gray-100 sm:text-sm"
           />
@@ -234,7 +187,7 @@ const handleSubmitCampaignForm = e => {
             type="text"
             id="userName"
             name="userName"
-            // value={campaignData.userName} // Should be filled with user context
+            value={user?.displayName} // Should be filled with user context
             readOnly
             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 bg-gray-100 sm:text-sm"
           />
