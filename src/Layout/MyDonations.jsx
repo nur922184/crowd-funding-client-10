@@ -34,7 +34,7 @@ const MyDonations = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto mt-10 p-6 bg-white rounded-lg shadow">
+    <div className="max-w-7xl mx-auto mt-10 p-6  dark:bg-gray-900 text-black dark:text-white bg-white rounded-lg shadow">
       <h2 className="text-3xl font-bold mb-6">My Donations</h2>
       {donations.length === 0 ? (
         <p className="text-center text-gray-500">No donations found.</p>

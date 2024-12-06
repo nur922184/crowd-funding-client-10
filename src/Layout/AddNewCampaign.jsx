@@ -63,7 +63,7 @@ const handleSubmitCampaignForm = e => {
             required
             // value={campaignData.image}
             // onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+            className="mt-1 block w-full border dark:bg-gray-900  border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
           />
         </div>
 
@@ -80,7 +80,7 @@ const handleSubmitCampaignForm = e => {
             required
             // value={campaignData.title}
             // onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+            className="mt-1 block w-full border dark:bg-gray-900  border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
           />
         </div>
 
@@ -94,7 +94,7 @@ const handleSubmitCampaignForm = e => {
             name="type"
             // value={campaignData.type}
             // onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+            className="mt-1 block w-full border dark:bg-gray-900  border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
           >
             <option value="personal issue">Personal Issue</option>
             <option value="startup">Startup</option>
@@ -119,7 +119,7 @@ const handleSubmitCampaignForm = e => {
             // value={campaignData.description}
             // onChange={handleChange}
             rows="4"
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+            className="mt-1 block w-full border dark:bg-gray-900  border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
           ></textarea>
         </div>
 
@@ -139,7 +139,7 @@ const handleSubmitCampaignForm = e => {
             required
             // value={campaignData.minimumDonation}
             // onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+            className="mt-1 block w-full border dark:bg-gray-900  border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
           />
         </div>
 
@@ -155,7 +155,7 @@ const handleSubmitCampaignForm = e => {
             required
             // value={campaignData.deadline}
             // onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
+            className="mt-1 block w-full border dark:bg-gray-900  border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
           />
         </div>
 
@@ -173,7 +173,7 @@ const handleSubmitCampaignForm = e => {
             name="email"
             value={user?.email} // Should be filled with user context
             readOnly
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2  dark:text-white sm:text-sm"
+            className="mt-1 block w-full border dark:bg-gray-900  border-gray-300 rounded-md shadow-sm p-2  dark:text-white sm:text-sm"
           />
         </div>
         <div className="mb-4">
@@ -189,7 +189,7 @@ const handleSubmitCampaignForm = e => {
             name="userName"
             value={user?.displayName} // Should be filled with user context
             readOnly
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 sm:text-sm"
+            className="mt-1 block w-full border dark:bg-gray-900  border-gray-300 rounded-md shadow-sm p-2 sm:text-sm"
           />
         </div>
 

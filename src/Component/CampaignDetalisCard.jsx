@@ -51,7 +51,7 @@ const CampaignDetailsCard = () => {
   const isExpired = new Date(details.deadline) < new Date();
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow">
+    <div className="max-w-4xl mx-auto mt-10 p-6  dark:bg-gray-900 text-black dark:text-white rounded-lg shadow">
       <ToastContainer />
       <img
         src={details.image}

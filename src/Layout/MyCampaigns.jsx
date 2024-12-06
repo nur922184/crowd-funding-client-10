@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../Providers/AuthProvider";
 import { MdDelete, MdEdit } from "react-icons/md";
 import Swal from "sweetalert2";
+import LoadingPage from "../Component/LoadingPage";
 
 
 const MyCampaigns = () => {
@@ -66,7 +67,7 @@ const MyCampaigns = () => {
   };
 
   if (loading) {
-    return <div className="w-44 h-28 mx-auto"><span className="loading loading-infinity loading-lg"></span>;</div>
+    return <LoadingPage></LoadingPage>;
 
   }
 
