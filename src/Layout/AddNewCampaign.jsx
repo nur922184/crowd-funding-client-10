@@ -21,7 +21,7 @@ const handleSubmitCampaignForm = e => {
     const userName = form.userName.value
 
     const newCampaigns = {image, title, type, description, minimumDonation, deadline, userName, email }
-    console.log(newCampaigns)
+    // console.log(newCampaigns)
 
     // sent data to server
 

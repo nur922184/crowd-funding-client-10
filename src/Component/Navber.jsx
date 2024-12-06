@@ -3,16 +3,31 @@ import { Link, NavLink } from 'react-router-dom';
 import UsesPic from '../assets/user-profile-icon-free-vector.png'
 import logo from '../assets/download.png'
 import { AuthContext } from '../Providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
-    const { user, Logout } = useContext(AuthContext)
-    const handleSignOut = () => {
-        Logout()
-            .then(() => {
-                alert('users sign out successfully')
-            })
-            .catch(error => console.log('ERROR', error.message))
-    }
+    const { user, Logout } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    Logout()
+      .then(() => {
+        Swal.fire({
+          title: "Signed Out",
+          text: "User signed out successfully!",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      })
+      .catch((error) => {
+        console.log("ERROR", error.message);
+        Swal.fire({
+          title: "Error",
+          text: "Failed to sign out. Please try again.",
+          icon: "error",
+          confirmButtonText: "OK",
+        });
+      });
+  };
     const Links =
         <>
             <li><NavLink to='/'>Home</NavLink> </li>

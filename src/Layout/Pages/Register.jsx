@@ -2,6 +2,7 @@ import { useContext, useState, } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import Swal from "sweetalert2";
 import { AuthContext } from '../../Providers/AuthProvider';
 import Navbar from '../../Component/Navber';
 
@@ -12,13 +13,15 @@ const Register = () => {
     const [show, setShow] = useState(false)
     const navigate = useNavigate()
 
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = new FormData(e.target);
-        const name = form.get('name');
-        const photoUrl = form.get('photo');
-        const email = form.get('email');
-        const Password = form.get('password');
+        const name = form.get("name");
+        const photoUrl = form.get("photo");
+        const email = form.get("email");
+        const Password = form.get("password");
 
         let hasError = false;
 
@@ -32,40 +35,93 @@ const Register = () => {
 
         // Password Validation
         const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+        const uppercaseRegex = /[A-Z]/;
+        const lowercaseRegex = /[a-z]/;
+        
         if (Password.length < 6) {
-            setErrorPass({ ...ErrorPass, password: "Password must be at least 6 characters long" });
-            hasError = true;
+          setErrorPass({
+            ...ErrorPass,
+            password: "Password must be at least 6 characters long",
+          });
+          hasError = true;
         } else if (!specialCharRegex.test(Password)) {
-            setErrorPass({ ...ErrorPass, password: "Password must include at least one special character" });
-            hasError = true;
+          setErrorPass({
+            ...ErrorPass,
+            password: "Password must include at least one special character",
+          });
+          hasError = true;
+        } else if (!uppercaseRegex.test(Password)) {
+          setErrorPass({
+            ...ErrorPass,
+            password: "Password must include at least one uppercase letter",
+          });
+          hasError = true;
+        } else if (!lowercaseRegex.test(Password)) {
+          setErrorPass({
+            ...ErrorPass,
+            password: "Password must include at least one lowercase letter",
+          });
+          hasError = true;
         } else {
-            setErrorPass({ ...ErrorPass, password: "" });
+          setErrorPass({ ...ErrorPass, password: "" });
         }
+        
         if (hasError) return;
+        
 
         // API Call
         crateNewUser(email, Password)
-            .then(result => {
+            .then((result) => {
                 const user = result.user;
                 console.log(user);
                 setUser(user);
+
                 UpdateUserProfile({ displayName: name, photoURL: photoUrl })
                     .then(() => {
-                        navigate("/", { state: { successMessage: "Successfully registered!" } });
+                        Swal.fire({
+                            title: "Registration Successful",
+                            text: "You have successfully registered!",
+                            icon: "success",
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            navigate("/", {
+                                state: { successMessage: "Successfully registered!" },
+                            });
+                        });
                     })
-                    .catch(err => {
-                        console.log(err);
+                    .catch((err) => {
+                        console.error(err);
+                        Swal.fire({
+                            title: "Profile Update Failed",
+                            text: "Something went wrong while updating your profile.",
+                            icon: "error",
+                            confirmButtonText: "OK",
+                        });
                     });
-                // alert('Successfully registered');
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
 
-                if (errorCode === 'auth/email-already-in-use') {
-                    setError({ ...error, email: "This email is already in use. Please try logging in." });
+                if (errorCode === "auth/email-already-in-use") {
+                    setError({
+                        ...error,
+                        email: "This email is already in use. Please try logging in.",
+                    });
+                    Swal.fire({
+                        title: "Email Already in Use",
+                        text: "This email is already registered. Please log in instead.",
+                        icon: "warning",
+                        confirmButtonText: "OK",
+                    });
                 } else {
-                    console.log(errorMessage);
+                    console.error(errorMessage);
+                    Swal.fire({
+                        title: "Registration Failed",
+                        text: "An error occurred during registration. Please try again.",
+                        icon: "error",
+                        confirmButtonText: "OK",
+                    });
                 }
             });
     };

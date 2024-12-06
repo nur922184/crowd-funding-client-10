@@ -3,8 +3,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword,  GoogleAuthProvider,  onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, } from 'firebase/auth';
 import { auth } from '../Firebase/firebase.init';
 export const AuthContext = createContext(null)
-import { toast, } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Swal from 'sweetalert2';
 
 
 const AuthProvider = ({ children }) => {
@@ -20,24 +19,35 @@ const AuthProvider = ({ children }) => {
     const Logout = () => {
         setLoding(true);
         // alert('logout successfully')
-        toast.info("Successfully Logout!", {
-            position: "top-center",
-            autoClose: 3000,
-        });
         return signOut(auth)
     }
     const continueToGoogle = () => {
         setLoding(true);
         signInWithPopup(auth, Porvider)
-            .then((result) => {
-                const user = result.user;
-                setUser(user);
-                toast.success("Successfully logged in with Google!", {
-                    position: "top-center",
-                    autoClose: 3000,
-                });
-            })
-    };
+          .then((result) => {
+            const user = result.user;
+            setUser(user);
+      
+            Swal.fire({
+              title: "Login Successful",
+              text: "Successfully logged in with Google!",
+              icon: "success",
+              confirmButtonText: "OK",
+            });
+          })
+          .catch((error) => {
+            console.error("Error during Google login:", error);
+            Swal.fire({
+              title: "Login Failed",
+              text: "Something went wrong during Google login. Please try again.",
+              icon: "error",
+              confirmButtonText: "OK",
+            });
+          })
+          .finally(() => {
+            setLoding(false);
+          });
+      };
 
     const Login = (email, password) => {
         setLoding(true);

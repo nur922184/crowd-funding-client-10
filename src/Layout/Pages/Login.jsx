@@ -5,7 +5,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../../Component/Navber";
-
+  import Swal from "sweetalert2";
 const Login = () => {
     const { setUser, Login, continueToGoogle, ForgotPassword } = useContext(AuthContext)
     const [error, setError] = useState({})
@@ -46,30 +46,44 @@ const Login = () => {
         const form = new FormData(e.target);
         const email = form.get('email');
         const Password = form.get('password');
-        Login(email, Password)
-            .then((result) => {
-                const user = result.user;
-                setUser(user);
-                navigate(location?.state ? location.state : "/", { state: { successMessage: "Successfully logged in!" } });
-                console.log(user);
-            })
-            .catch((error) => {
-                let errorMessage = "Login failed. Please try again.";
-                if (error.code === "auth/user-not-found") {
-                    errorMessage = "No user found with this email. Please register first.";
-                } else if (error.code === "auth/wrong-password") {
-                    errorMessage = "Incorrect password. Please try again.";
-                } else if (error.code === "auth/too-many-requests") {
-                    errorMessage = "Too many login attempts. Please try again later.";
-                }
-                // Display the error message
-                toast.error(errorMessage, {
-                    position: "top-center",
-                    autoClose: 3000, // Closes after 3 seconds
-                });
+      
 
-                setError({ ...error, Login: errorMessage });
+        Login(email, Password)
+          .then((result) => {
+            const user = result.user;
+            setUser(user);
+            navigate(location?.state ? location.state : "/", {
+              state: { successMessage: "Successfully logged in!" },
             });
+            Swal.fire({
+              title: "Login Successful",
+              text: "You have successfully logged in!",
+              icon: "success",
+              confirmButtonText: "OK",
+            });
+            console.log(user);
+          })
+          .catch((error) => {
+            let errorMessage = "Login failed. Please try again.";
+            if (error.code === "auth/user-not-found") {
+              errorMessage = "No user found with this email. Please register first.";
+            } else if (error.code === "auth/wrong-password") {
+              errorMessage = "Incorrect password. Please try again.";
+            } else if (error.code === "auth/too-many-requests") {
+              errorMessage = "Too many login attempts. Please try again later.";
+            }
+        
+            // Display the error message using SweetAlert2
+            Swal.fire({
+              title: "Login Failed",
+              text: errorMessage,
+              icon: "error",
+              confirmButtonText: "OK",
+            });
+        
+            setError({ ...error, Login: errorMessage });
+          });
+        
     };
 
 

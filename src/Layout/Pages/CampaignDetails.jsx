@@ -43,7 +43,7 @@ const CampaignDetails = () => {
       donorEmail: user.email,
       donorName: user.name,
     };
-    console.log(donationData)
+    // console.log(donationData)
 
     try {
       const response = await fetch("http://localhost:5000/donations", {
