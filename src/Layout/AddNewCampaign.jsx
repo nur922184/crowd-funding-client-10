@@ -47,12 +47,12 @@ const handleSubmitCampaignForm = e => {
 
 }
   return (
-    <div className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow">
+    <div className="max-w-3xl mx-auto mt-10 p-6  dark:bg-gray-900 text-black dark:text-white bg-white rounded-lg shadow">
       <h2 className="text-2xl font-bold mb-6">Add New Campaign</h2>
       <form onSubmit={handleSubmitCampaignForm}>
         {/* Image URL */}
         <div className="mb-4">
-          <label htmlFor="image" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="image" className="block text-sm font-medium text-gray-700  dark:text-white">
             Image URL
           </label>
           <input
@@ -69,7 +69,7 @@ const handleSubmitCampaignForm = e => {
 
         {/* Campaign Title */}
         <div className="mb-4">
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="title" className="block text-sm font-medium text-gray-700  dark:text-white">
             Campaign Title
           </label>
           <input
@@ -86,7 +86,7 @@ const handleSubmitCampaignForm = e => {
 
         {/* Campaign Type */}
         <div className="mb-4">
-          <label htmlFor="type" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="type" className="block text-sm font-medium text-gray-700  dark:text-white">
             Campaign Type
           </label>
           <select
@@ -107,7 +107,7 @@ const handleSubmitCampaignForm = e => {
         <div className="mb-4">
           <label
             htmlFor="description"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-700  dark:text-white"
           >
             Description
           </label>
@@ -127,7 +127,7 @@ const handleSubmitCampaignForm = e => {
         <div className="mb-4">
           <label
             htmlFor="minimumDonation"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-700  dark:text-white"
           >
             Minimum Donation Amount
           </label>
@@ -145,7 +145,7 @@ const handleSubmitCampaignForm = e => {
 
         {/* Deadline */}
         <div className="mb-4">
-          <label htmlFor="deadline" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="deadline" className="block text-sm font-medium text-gray-700  dark:text-white">
             Deadline
           </label>
           <input
@@ -163,7 +163,7 @@ const handleSubmitCampaignForm = e => {
         <div className="mb-4">
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-700  dark:text-white"
           >
             User Email
           </label>
@@ -173,13 +173,13 @@ const handleSubmitCampaignForm = e => {
             name="email"
             value={user?.email} // Should be filled with user context
             readOnly
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 bg-gray-100 sm:text-sm"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2  dark:text-white sm:text-sm"
           />
         </div>
         <div className="mb-4">
           <label
             htmlFor="userName"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-700  dark:text-white"
           >
             User Name
           </label>
@@ -189,7 +189,7 @@ const handleSubmitCampaignForm = e => {
             name="userName"
             value={user?.displayName} // Should be filled with user context
             readOnly
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 bg-gray-100 sm:text-sm"
+            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 sm:text-sm"
           />
         </div>
 

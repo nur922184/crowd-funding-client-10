@@ -12,7 +12,8 @@ const MyCampaigns = () => {
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext)
 
-  const userEmail = { user } // Replace this with the logged-in user's email from context or authentication
+
+  const userEmail = user.email; // Replace this with the logged-in user's email from context or authentication
 
   // Fetch campaigns for the logged-in user
   useEffect(() => {
@@ -70,14 +71,14 @@ const MyCampaigns = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto mt-10 p-6 bg-white rounded-lg shadow">
+    <div className="max-w-5xl mx-auto mt-10 p-6  dark:bg-gray-900 text-black dark:text-white rounded-lg shadow">
       <h2 className="text-2xl font-bold mb-6">My Campaigns</h2>
       {campaigns.length === 0 ? (
         <p className="text-center text-gray-500">You have not added any campaigns yet.</p>
       ) : (
         <table className="min-w-full border-collapse border border-gray-300 text-xs sm:text-base">
           <thead>
-            <tr className="bg-gray-100">
+            <tr className="">
               <th className="border border-gray-300 px-4 py-2 text-left">Title</th>
               <th className="border border-gray-300 px-4 py-2 text-left">Type</th>
               <th className="border border-gray-300 px-4 py-2 text-left">Minimum Donation</th>
@@ -87,7 +88,7 @@ const MyCampaigns = () => {
           </thead>
           <tbody>
             {campaigns.map((campaign) => (
-              <tr key={campaign._id} className="hover:bg-gray-50">
+              <tr key={campaign._id} className =" ">
                 <td className="border border-gray-300 px-4 py-2">{campaign.title}</td>
                 <td className="border border-gray-300 px-4 py-2">{campaign.type}</td>
                 <td className="border border-gray-300 px-4 py-2">

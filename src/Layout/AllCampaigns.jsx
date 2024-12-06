@@ -42,7 +42,7 @@ const AllCampaigns = () => {
         <div className="overflow-x-auto">
           <table className="min-w-full border-collapse border border-gray-300 text-xs sm:text-base">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="  dark:bg-gray-900 text-black dark:text-white bg-gray-100">
                 <th className="border border-gray-300 px-2 sm:px-4 py-2 text-left">
                   Title
                 </th>
@@ -62,7 +62,7 @@ const AllCampaigns = () => {
             </thead>
             <tbody>
               {campaigns.map((campaign) => (
-                <tr key={campaign._id} className="hover:bg-gray-50">
+                <tr key={campaign._id} className="">
                   <td className="border border-gray-300 px-2 sm:px-4 py-2">{campaign.title}</td>
                   <td className="border border-gray-300 px-2 sm:px-4 py-2">{campaign.type}</td>
                   <td className="border border-gray-300 px-2 sm:px-4 py-2">

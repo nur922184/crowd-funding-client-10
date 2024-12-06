@@ -95,14 +95,14 @@ const Home = () => {
       </section>
 
       {/* Running Campaigns Section */}
-      <section className="py-12 bg-gray-100">
+      <section className="py-12">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-8">Running Campaigns</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {campaigns.map((campaign) => (
               <div
                 key={campaign._id}
-                className="bg-white shadow-md rounded-lg p-4 hover:shadow-xl transition"
+                className="bg-white  dark:bg-gray-900 text-black dark:text-white shadow-md rounded-lg p-4 hover:shadow-xl transition"
               >
                 <img
                   src={campaign.image}
@@ -123,7 +123,7 @@ const Home = () => {
             {/* Modal */}
             {selectedCampaign && (
               <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-                <div className="bg-white p-6 rounded-lg shadow-lg w-3/4 md:w-1/2">
+                <div className="bg-white  dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-3/4 md:w-1/2">
                   <button
                     onClick={closeModal}
                     className= "text-red-500 hover:text-red-700 -mb-4 text-2xl"

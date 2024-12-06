@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast, } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingPage from "../../Component/LoadingPage";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const CampaignDetails = () => {
+
   const { id } = useParams();
   const navigate = useNavigate();
   const [campaign, setCampaign] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const { user } = useContext(AuthContext)
   // Replace with actual logged-in user's info
-  const user = {
-    email: "user@example.com", // Replace with logged-in user email
-    name: "John Doe", // Replace with logged-in user name
-  };
+
 
   useEffect(() => {
     const fetchCampaignDetails = async () => {
@@ -45,6 +44,7 @@ const CampaignDetails = () => {
       donorEmail: user.email,
       donorName: user.name,
     };
+    console.log(donationData)
 
     try {
       const response = await fetch("http://localhost:5000/donations", {
@@ -75,7 +75,7 @@ const CampaignDetails = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow">
+    <div className="max-w-4xl mx-auto mt-10 p-6 rounded-lg shadow">
       <img
         src={campaign.image}
         alt={campaign.title}
