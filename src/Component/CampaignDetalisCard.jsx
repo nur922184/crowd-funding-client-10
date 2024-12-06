@@ -23,9 +23,12 @@ const CampaignDetailsCard = () => {
 
     // Proceed with donation
     const newDonate = {
+      detailsImage:details.image,
+      deadlineDate: details.deadline,
       campaignId: details._id,
-      donorEmail: {email}, // Replace with actual user email
-      donorName: {Name}, // Replace with actual user name
+      campaignTitle: details.title,
+      donorEmail: email, // Replace with actual user email
+      donorName: Name, // Replace with actual user name
       donationAmount: details.minimumDonation, // You can prompt user for amount
     };
 

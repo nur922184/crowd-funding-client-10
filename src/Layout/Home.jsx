@@ -126,7 +126,7 @@ const Home = () => {
                 <div className="bg-white  dark:bg-gray-900 text-black dark:text-white p-6 rounded-lg shadow-lg w-3/4 md:w-1/2">
                   <button
                     onClick={closeModal}
-                    className= "text-red-500 hover:text-red-700 -mb-4 text-2xl"
+                    className="text-red-500 hover:text-red-700 -mb-4 text-2xl"
                   >
                     <CgCloseR></CgCloseR>
                   </button>

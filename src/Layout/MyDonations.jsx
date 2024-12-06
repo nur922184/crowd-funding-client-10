@@ -9,7 +9,7 @@ const MyDonations = () => {
   const {user} = useContext(AuthContext)
 
   // Replace this with the user's email from authentication
-  const userEmail ={user}; // Replace with actual user email
+  const userEmail =user.email ; // Replace with actual user email
 
   useEffect(() => {
     const fetchDonations = async () => {
@@ -46,18 +46,18 @@ const MyDonations = () => {
               className="border border-gray-300 rounded-lg shadow-sm p-4"
             >
               <img
-                src={donation.image}
-                alt={donation.title}
+                src={donation.detailsImage}
+                alt={donation.campaignTitle}
                 className="h-48 w-full object-cover rounded-md"
               />
-              <h3 className="text-xl font-semibold mt-4">{donation.title}</h3>
-              <p className="text-gray-600 text-sm mt-2">{donation.description}</p>
+              <h3 className="text-xl font-semibold mt-4">{donation.campaignTitle}</h3>
+              <p className="text-gray-600 text-sm mt-2">{donation.title}</p>
               <p className="mt-2">
-                <span className="font-bold">Amount Donated:</span> ${donation.amount}
+                <span className="font-bold">Amount Donated:</span> ${donation.donationAmount}
               </p>
               <p className="text-gray-500 text-sm">
                 <span className="font-bold">Donated On:</span>{" "}
-                {new Date(donation.date).toLocaleDateString()}
+                {new Date(donation.deadlineDate).toLocaleDateString()}
               </p>
             </div>
           ))}
