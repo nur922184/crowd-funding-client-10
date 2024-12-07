@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import slide2 from '../assets/2.jpg';
 import slide1 from '../assets/1.jpeg';
 import slide3 from '../assets/3.webp';
+import HowItWorks from "../Component/HowItWorks";
+import WhyChooseUs from "../Component/WhyChooseUs";
 
 const Home = () => {
   const [campaigns, setCampaigns] = useState([]);
@@ -57,6 +59,7 @@ const Home = () => {
         </div>
       </section>
 
+
       {/* Running Campaigns Section */}
       <section className="py-12">
         <div className="container mx-auto">
@@ -84,6 +87,10 @@ const Home = () => {
             ))}
           </div>
         </div>
+      </section>
+      <section>
+        <WhyChooseUs></WhyChooseUs>
+        <HowItWorks></HowItWorks>
       </section>
     </div>
   );
