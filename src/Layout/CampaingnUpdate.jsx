@@ -41,7 +41,7 @@ const CampaingnUpdate = () => {
       return;
     }
 
-    fetch(`http://localhost:5000/donations/${_id}`, {
+    fetch(`https://my-assignment-ten-server-sigma.vercel.app/donations/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -17,7 +17,7 @@ const CampaignDetails = () => {
   useEffect(() => {
     const fetchCampaignDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/campaigns/${id}`);
+        const response = await fetch(`https://my-assignment-ten-server-sigma.vercel.app/campaigns/${id}`);
         const data = await response.json();
         setCampaign(data);
         setLoading(false);
@@ -47,7 +47,7 @@ const CampaignDetails = () => {
     // console.log(donationData)
 
     try {
-      const response = await fetch("http://localhost:5000/donations", {
+      const response = await fetch("https://my-assignment-ten-server-sigma.vercel.app/donations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

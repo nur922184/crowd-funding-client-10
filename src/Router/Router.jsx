@@ -32,12 +32,12 @@ const router = createBrowserRouter([
       {
         path: "/campaigns/:id",
         element: <PrivatRoute><CampaignDetalisCard></CampaignDetalisCard></PrivatRoute>, 
-        loader: ({params}) => fetch(`http://localhost:5000/campaigns/${params.id}`)
+        loader: ({params}) => fetch(`https://my-assignment-ten-server-sigma.vercel.app/campaigns/${params.id}`)
       },
       {
         path: "/donations/:Id",
         element: <PrivatRoute><CampaingnUpdate></CampaingnUpdate></PrivatRoute>, 
-        loader: ({params}) => fetch(`http://localhost:5000/donations/${params.Id}`)
+        loader: ({params}) => fetch(`https://my-assignment-ten-server-sigma.vercel.app/donations/${params.Id}`)
       },
       {
         path: "/my-campaigns",

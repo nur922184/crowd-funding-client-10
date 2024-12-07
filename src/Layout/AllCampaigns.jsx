@@ -9,7 +9,7 @@ const AllCampaigns = () => {
 
   // Fetch campaigns from the backend
   useEffect(() => {
-    fetch("http://localhost:5000/campaigns")
+    fetch("https://my-assignment-ten-server-sigma.vercel.app/campaigns")
       .then((response) => response.json())
       .then((data) => setCampaigns(data))
       .catch((error) => console.error("Error fetching campaigns:", error));

@@ -25,7 +25,7 @@ const handleSubmitCampaignForm = e => {
 
     // sent data to server
 
-    fetch('http://localhost:5000/campaigns', {
+    fetch('https://my-assignment-ten-server-sigma.vercel.app/campaigns', {
         method: "POST", 
         headers: {
             'content-type':'application/json'

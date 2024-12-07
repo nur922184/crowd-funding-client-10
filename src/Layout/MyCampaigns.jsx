@@ -20,7 +20,7 @@ const MyCampaigns = () => {
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/donations?email=${userEmail}`);
+        const response = await fetch(`https://my-assignment-ten-server-sigma.vercel.app/donations?email=${userEmail}`);
         const data = await response.json();
         setCampaigns(data);
         setLoading(false);
@@ -47,7 +47,7 @@ const MyCampaigns = () => {
   
     if (result.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:5000/donations/${Id}`, {
+        const response = await fetch(`https://my-assignment-ten-server-sigma.vercel.app/donations/${Id}`, {
           method: "DELETE",
         });
   

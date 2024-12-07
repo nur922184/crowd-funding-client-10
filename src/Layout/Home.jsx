@@ -11,7 +11,7 @@ const Home = () => {
 
   useEffect(() => {
     // Fetch running campaigns from the database
-    fetch("http://localhost:5000/campaigns?limit=6")
+    fetch("https://my-assignment-ten-server-sigma.vercel.app/campaigns?limit=6")
       .then((res) => res.json())
       .then((data) => setCampaigns(data));
   }, []);

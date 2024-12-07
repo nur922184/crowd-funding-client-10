@@ -15,7 +15,7 @@ const MyDonations = () => {
     const fetchDonations = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/donations?email=${userEmail}`
+          `https://my-assignment-ten-server-sigma.vercel.app/donations?email=${userEmail}`
         );
         const data = await response.json();
         setDonations(data);

@@ -36,7 +36,7 @@ const CampaignDetailsCard = () => {
       donationAmount: details.minimumDonation, // You can prompt user for amount
     };
 
-    fetch("http://localhost:5000/donations", {
+    fetch("https://my-assignment-ten-server-sigma.vercel.app/donations", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newDonate),
