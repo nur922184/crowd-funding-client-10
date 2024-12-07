@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
+import { TbAdjustmentsHorizontal } from "react-icons/tb";
 import { Link, useLoaderData } from "react-router-dom";
 
 const AllCampaigns = () => {
@@ -31,11 +33,12 @@ const AllCampaigns = () => {
         All Campaigns
       </h2>
       <button
-        className="bg-blue-500 text-white py-2 px-4 rounded mb-4"
-        onClick={handleSort}
-      >
-        Sort by Minimum Donation ({sortOrder === "asc" ? "Ascending" : "Descending"})
-      </button>
+      className="bg-blue-500 text-white py-2 px-4 rounded mb-4 flex items-center space-x-2"
+      onClick={handleSort}
+    >
+      <span><TbAdjustmentsHorizontal size={20} /></span>
+      {sortOrder === "asc" ? <FaArrowUp /> : <FaArrowDown />}
+    </button>
       {campaigns.length === 0 ? (
         <p className="text-center text-sm sm:text-base text-gray-500">No campaigns found.</p>
       ) : (

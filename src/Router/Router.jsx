@@ -10,6 +10,7 @@ import MyDonations from "../Layout/MyDonations";
 import CampaignDetalisCard from "../Component/CampaignDetalisCard";
 import CampaingnUpdate from "../Layout/CampaingnUpdate";
 import PrivatRoute from "../Providers/PrivatRoute";
+import ErrorPage from "../Component/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
         loader: ({params}) => fetch(`http://localhost:5000/campaigns/${params.id}`)
       },
       {
-        path: "/campaigns/:Id",
+        path: "/donations/:Id",
         element: <PrivatRoute><CampaingnUpdate></CampaingnUpdate></PrivatRoute>, 
         loader: ({params}) => fetch(`http://localhost:5000/campaigns/${params.Id}`)
       },
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
   {
     path:"/register", 
     element:<Register></Register>
+  },
+  {
+    path:"*", 
+    element:<ErrorPage></ErrorPage>
   }
 ]);
 
