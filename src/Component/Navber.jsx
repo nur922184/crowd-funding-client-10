@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import {  NavLink } from 'react-router-dom';
 import UsesPic from '../assets/user-profile-icon-free-vector.png'
-import logo from '../assets/download.png'
+import logo from '../assets/logo.jpg'
 import { AuthContext } from '../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 
@@ -65,7 +65,8 @@ const Navbar = () => {
                         {Links}
                     </ul>
                 </div>
-                <NavLink to='/'> <img className='w-16 h-16 rounded-full' src={logo} alt="" /></NavLink>
+                <NavLink to='/'> <img className='w-24 h-24 rounded-full' src={logo} alt="" />
+                </NavLink>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

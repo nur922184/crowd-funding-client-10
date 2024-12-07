@@ -37,7 +37,7 @@ const router = createBrowserRouter([
       {
         path: "/donations/:Id",
         element: <PrivatRoute><CampaingnUpdate></CampaingnUpdate></PrivatRoute>, 
-        loader: ({params}) => fetch(`http://localhost:5000/campaigns/${params.Id}`)
+        loader: ({params}) => fetch(`http://localhost:5000/donations/${params.Id}`)
       },
       {
         path: "/my-campaigns",

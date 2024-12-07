@@ -37,6 +37,7 @@ const CampaignDetails = () => {
     }
 
     const donationData = {
+      type : campaign.type,
       campaignId: campaign._id,
       campaignTitle: campaign.title,
       amount: campaign.minimumDonation,

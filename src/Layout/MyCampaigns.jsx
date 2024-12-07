@@ -20,7 +20,7 @@ const MyCampaigns = () => {
   useEffect(() => {
     const fetchCampaigns = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/campaigns?email=${userEmail}`);
+        const response = await fetch(`http://localhost:5000/donations?email=${userEmail}`);
         const data = await response.json();
         setCampaigns(data);
         setLoading(false);
@@ -47,7 +47,7 @@ const MyCampaigns = () => {
   
     if (result.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:5000/campaigns/${Id}`, {
+        const response = await fetch(`http://localhost:5000/donations/${Id}`, {
           method: "DELETE",
         });
   
@@ -90,13 +90,13 @@ const MyCampaigns = () => {
           <tbody>
             {campaigns.map((campaign) => (
               <tr key={campaign._id} className =" ">
-                <td className="border border-gray-300 px-4 py-2">{campaign.title}</td>
-                <td className="border border-gray-300 px-4 py-2">{campaign.type}</td>
+                <td className="border border-gray-300 px-4 py-2">{campaign.campaignTitle}</td>
+                <td className="border border-gray-300 px-4 py-2">{campaign.Type}</td>
                 <td className="border border-gray-300 px-4 py-2">
-                  ${campaign.minimumDonation}
+                  ${campaign.donationAmount}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  {new Date(campaign.deadline).toLocaleDateString()}
+                  {new Date(campaign.deadlineDate).toLocaleDateString()}
                 </td>
                 <td className="border border-gray-300 px-4 py-1 text-center justify-around items-center">
                   <button>

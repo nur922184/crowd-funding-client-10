@@ -1,17 +1,73 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 const CampaingnUpdate = () => {
- const updateData = useLoaderData()
-  const {user} = useContext(AuthContext)
+  const data = useLoaderData(); // Assuming this contains the campaign data
+  console.log(data);
+  const { user } = useContext(AuthContext);
 
+  const handleSubmitUpdateForm = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const image = form.image.value;
+    const title = form.title.value;
+    const type = form.type.value;
+    const description = form.description.value;
+    const minimumDonation = form.minimumDonation.value;
+    const deadline = form.deadline.value;
+    const email = form.email.value;
+    const userName = form.userName.value;
+
+    const newCampaigns = {
+      image,
+      title,
+      type,
+      description,
+      minimumDonation,
+      deadline,
+      userName,
+      email,
+    };
+
+    // Extract `_id` from the loaded data or props
+    const { _id } = data; // Ensure `_id` exists in `data`
+
+    if (!_id) {
+      console.error("Error: _id is not defined");
+      return;
+    }
+
+    fetch(`http://localhost:5000/donations/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newCampaigns),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          console.log("Successfully updated");
+          Swal.fire({
+            title: "Success!",
+            text: "Donate updated successfully",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+          form.reset();
+        }
+      });
+  };
 
     return (
       <div className="max-w-3xl mx-auto mt-10 p-6  dark:bg-gray-900 text-black dark:text-white bg-white rounded-lg shadow">
       <h2 className="text-2xl font-bold mb-6">Update Campaign</h2>
-      <form>
+      <form onSubmit={handleSubmitUpdateForm }>
         {/* Image URL */}
         <div className="mb-4">
           <label htmlFor="image" className="block text-sm font-medium text-gray-700  dark:text-white">
@@ -23,7 +79,7 @@ const CampaingnUpdate = () => {
             name="image"
             placeholder="Enter image URL"
             required
-            defaultValue={updateData.image}
+            defaultValue={data.detailsImage}
             // onChange={handleChange}
             className="mt-1 block w-full border dark:bg-gray-900  border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
           />
@@ -40,7 +96,7 @@ const CampaingnUpdate = () => {
             name="title"
             placeholder="Enter campaign title"
             required
-            defaultValue={updateData.title}
+            defaultValue={data.campaignTitle}
             // onChange={handleChange}
             className="mt-1 block w-full border dark:bg-gray-900  border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
           />
@@ -54,7 +110,7 @@ const CampaingnUpdate = () => {
           <select
             id="type"
             name="type"
-            defaultValue={updateData.type}
+            defaultValue={data.Type}
             // onChange={handleChange}
             className="mt-1 block w-full border dark:bg-gray-900  border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
           >
@@ -78,7 +134,7 @@ const CampaingnUpdate = () => {
             name="description"
             placeholder="Enter campaign description"
             required
-            defaultValue={updateData.description}
+            defaultValue={data.campaignDiscretion}
             // onChange={handleChange}
             rows="4"
             className="mt-1 block w-full border dark:bg-gray-900  border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
@@ -99,7 +155,7 @@ const CampaingnUpdate = () => {
             name="minimumDonation"
             placeholder="Enter minimum donation amount"
             required
-            defaultValue={updateData.minimumDonation}
+            defaultValue={data.donationAmount}
             // onChange={handleChange}
             className="mt-1 block w-full border dark:bg-gray-900  border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
           />
@@ -115,7 +171,7 @@ const CampaingnUpdate = () => {
             id="deadline"
             name="deadline"
             required
-            defaultValue={updateData.deadline}
+            defaultValue={data.deadlineDate}
             // onChange={handleChange}
             className="mt-1 block w-full border dark:bg-gray-900  border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500 sm:text-sm"
           />

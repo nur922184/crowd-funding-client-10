@@ -3,6 +3,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast, ToastContainer, } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const CampaignDetailsCard = () => {
   const details = useLoaderData();
@@ -23,10 +24,13 @@ const CampaignDetailsCard = () => {
 
     // Proceed with donation
     const newDonate = {
+      Type:details.type,
       detailsImage:details.image,
       deadlineDate: details.deadline,
       campaignId: details._id,
       campaignTitle: details.title,
+      campaignDiscretion:details.description,
+      campaignDate:details.deadline,
       donorEmail: email, // Replace with actual user email
       donorName: Name, // Replace with actual user name
       donationAmount: details.minimumDonation, // You can prompt user for amount
@@ -37,15 +41,26 @@ const CampaignDetailsCard = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newDonate),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        toast.success("Thank you for your donation!");
+    .then((response) => response.json())
+    .then((data) => {
+      Swal.fire({
+        title: "Donation Successful",
+        text: "Thank you for your donation!",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => {
         navigate("/myDonations");
-      })
-      .catch((error) => {
-        toast.error("Something went wrong. Please try again.");
-        console.error("Error donating:", error);
       });
+    })
+    .catch((error) => {
+      Swal.fire({
+        title: "Donation Failed",
+        text: "Something went wrong. Please try again.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      console.error("Error donating:", error);
+    });
   };
 
   const isExpired = new Date(details.deadline) < new Date();

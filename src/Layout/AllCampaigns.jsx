@@ -36,7 +36,7 @@ const AllCampaigns = () => {
       className="bg-blue-500 text-white py-2 px-4 rounded mb-4 flex items-center space-x-2"
       onClick={handleSort}
     >
-      <span><TbAdjustmentsHorizontal size={20} /></span>
+      <span>Sort by Minimum Donation</span> <span><TbAdjustmentsHorizontal size={20} /></span>
       {sortOrder === "asc" ? <FaArrowUp /> : <FaArrowDown />}
     </button>
       {campaigns.length === 0 ? (
