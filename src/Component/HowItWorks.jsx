@@ -1,10 +1,13 @@
 import React from 'react';
+import { Slide } from 'react-awesome-reveal';
 
 const HowItWorks = () => {
-    return (
-        <div className="bg-gray-50 dark:bg-gray-900 text-black dark:text-white py-16">
+  return (
+    <div className="bg-gray-50 dark:bg-gray-900 text-black dark:text-white py-16">
       <div className="max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold mb-6">How It Works</h2>
+        <Slide direction="right">
+          <h2 className="text-3xl font-bold text-center mb-6">How It Works</h2>
+        </Slide>
         <div className="grid md:grid-cols-3 gap-8">
           <div className="bg-white dark:bg-gray-900 text-black dark:text-white p-6 rounded shadow">
             <div className="mb-4">
@@ -36,7 +39,7 @@ const HowItWorks = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default HowItWorks;

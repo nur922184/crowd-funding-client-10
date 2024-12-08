@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import { TbAdjustmentsHorizontal } from "react-icons/tb";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, } from "react-router-dom";
 
 const AllCampaigns = () => {
   const [campaigns, setCampaigns] = useState([]);
@@ -33,14 +33,20 @@ const AllCampaigns = () => {
         All Campaigns
       </h2>
       <button
-      className="bg-blue-500 text-white py-2 px-4 rounded mb-4 flex items-center space-x-2"
-      onClick={handleSort}
-    >
-      <span>Sort by Minimum Donation</span> <span><TbAdjustmentsHorizontal size={20} /></span>
-      {sortOrder === "asc" ? <FaArrowUp /> : <FaArrowDown />}
-    </button>
+        className="bg-blue-500 text-white py-2 px-4 rounded mb-4 flex items-center space-x-2"
+        onClick={handleSort}
+      >
+        <span>Sort by Minimum Donation</span> <span><TbAdjustmentsHorizontal size={20} /></span>
+        {sortOrder === "asc" ? <FaArrowUp /> : <FaArrowDown />}
+      </button>
       {campaigns.length === 0 ? (
-        <p className="text-center text-sm sm:text-base text-gray-500">No campaigns found.</p>
+        <span>
+          <p className="text-center text-sm sm:text-base text-gray-500">No campaigns found.</p>
+          <div className="flex items-center justify-center bg-gray-100 dark:bg-gray-900 dark:text-white mt-4">
+            <span className="loading loading-bars loading-md"></span>
+          </div>
+        </span>
+
       ) : (
         <div className="overflow-x-auto">
           <table className="min-w-full border-collapse border border-gray-300 text-xs sm:text-base">

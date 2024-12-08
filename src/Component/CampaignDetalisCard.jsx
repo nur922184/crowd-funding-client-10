@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast, ToastContainer, } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Tooltip } from "react-tooltip";
+import 'react-tooltip/dist/react-tooltip.css';
 import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -93,6 +95,7 @@ const CampaignDetailsCard = () => {
       </div>
       <button
         onClick={handleDonate}
+        data-tooltip-id="donateTooltip"
         disabled={isExpired}
         className={`w-full py-2 rounded-md text-white font-bold ${
           isExpired
@@ -102,6 +105,7 @@ const CampaignDetailsCard = () => {
       >
         {isExpired ? "Campaign Expired" : "Donate"}
       </button>
+      <Tooltip id="donateTooltip" content="Click to donate to this campaign!" />
     </div>
   );
 };
