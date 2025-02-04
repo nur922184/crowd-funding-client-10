@@ -3,6 +3,9 @@
 Crowdcube is a modern crowdfunding platform where users can create campaigns, browse inspiring ideas, and support them financially. The project is built with React for the frontend, Node.js for the backend, and MongoDB as the database.
 
 ---
+## Live Website Link
+
+[Live Demo](https://my-assignment-ten-57a0d.web.app/)
 
 ## 🚀 Features
 
